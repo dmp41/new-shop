@@ -1,0 +1,43 @@
+
+{% load static %}
+{% load product_list_tags %}
+
+
+
+
+<link rel="stylesheet" href="{% static 'card.css' %}">
+<link rel="stylesheet" href="{% static 'card_list.css' %}">
+
+{% get_products as products %}
+<div class="cards">
+  {% for product in products %}
+    <div class="card">
+      <!-- Верхняя часть -->
+      <div class="card__top">
+        <!-- Изображение-ссылка товара -->
+        <a href="#" class="card__image">
+          <img
+            src="{{ product.image.url}}"
+            alt="Apple IPhone 14 PRO Max Gold"
+          />
+        </a>
+        <!-- Скидка на товар -->
+        <div class="card__label">-{{ product.discount }}%</div>
+      </div>
+      <!-- Нижняя часть -->
+      <div class="card__bottom">
+        <!-- Цены на товар (с учетом скидки и без)-->
+        <div class="card__prices">
+          <div class="card__price card__price--discount">{{ product.product_price }}</div>
+          <div class="card__price card__price--common">{{ product.product_price }}</div>
+        </div>
+        <!-- Ссылка-название товара -->
+        <a href="#" class="card__title">
+          Смартфон Apple IPhone 14 Pro Max 256Gb, золотой
+        </a>
+        <!-- Кнопка добавить в корзину -->
+        <button class="card__add">В корзину</button>
+      </div>
+    </div>
+  {% endfor %}
+ </div>
